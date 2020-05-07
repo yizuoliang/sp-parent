@@ -18,4 +18,8 @@
         <module>sp-entity</module>
     </modules>
 
+    <dependencies>
+
+    </dependencies>
+
 </project>
