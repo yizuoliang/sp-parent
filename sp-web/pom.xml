@@ -10,11 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sp-web</artifactId>
+    <description>web工程</description>
 
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>hello-world</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>configuration</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 

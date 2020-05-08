@@ -1,4 +1,4 @@
-package org.example.sp.business.controller;
+package org.example.sp.business.hello.world.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

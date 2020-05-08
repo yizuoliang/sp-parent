@@ -14,8 +14,8 @@
     <description>通用工程</description>
 
     <modules>
-        <module>sp-utils</module>
-        <module>sp-entity</module>
+
+        <module>configuration</module>
     </modules>
 
     <dependencies>

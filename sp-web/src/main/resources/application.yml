@@ -77,3 +77,8 @@ spring:
         login-username: druid
         login-password: druid
         allow: 127.0.0.1
+#mybatis-plus配置控制台打印完整带参数SQL语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

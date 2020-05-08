@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sp-entity</artifactId>
+    <artifactId>configuration</artifactId>
+    <description>配置模块</description>
 
 
 </project>
