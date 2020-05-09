@@ -37,9 +37,9 @@ public class ApplicationTest {
     @Test
     public void insertUser(){
         User user=new User();
-        user.setName("kehan");
-        user.setEmail("584334f@qq.com");
-        user.setAge(19);
+        user.setName("addfasf");
+        user.setEmail("58dxf@qq.com");
+        user.setAge(22);
         int insert = mapper.insert(user);
         System.out.println(user.getId());
     }
@@ -47,10 +47,10 @@ public class ApplicationTest {
     @Test
     public void uodateUserById(){
         User user=new User();
-        user.setId("54285");
+        user.setId("54211");
         user.setName("yi");
         user.setEmail("254df@qq.com");
-        user.setAge(18);
+        user.setAge(26);
         mapper.updateById(user);
         System.out.println(user.getId());
     }
