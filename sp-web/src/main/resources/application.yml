@@ -1,5 +1,7 @@
+#项目版本号
+version: @project.version@
 server:
-  port: 8088
+  port: 8888
   servlet:
     context-path: /sp
 spring:
