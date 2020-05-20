@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @Author: yizl
  * @Date: 2020/5/9
- * @Description:
+ * @Description: mybatisplus在新增或者更新数据时,自动更新的字段,处理器
  */
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {

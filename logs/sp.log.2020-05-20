@@ -1,0 +1,20 @@
+2020-05-20 13:38:03.139 [main] INFO  org.example.sp.web.Application - Starting Application on DESKTOP-U44TV0D with PID 27524 (F:\code\sp-parent\sp-web\target\classes started by yizl in F:\code\sp-parent)
+2020-05-20 13:38:03.142 [main] INFO  org.example.sp.web.Application - The following profiles are active: dev
+2020-05-20 13:38:06.331 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$17bec75a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-20 13:38:06.828 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8888 (http)
+2020-05-20 13:38:06.851 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-05-20 13:38:06.852 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2020-05-20 13:38:07.069 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/sp] - Initializing Spring embedded WebApplicationContext
+2020-05-20 13:38:07.069 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3517 ms
+2020-05-20 13:38:07.358 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-05-20 13:38:07.766 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-05-20 13:38:09.004 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-05-20 13:38:09.151 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-20 13:38:09.344 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-05-20 13:38:09.363 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-05-20 13:38:09.393 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-05-20 13:38:09.689 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8888 (http) with context path '/sp'
+2020-05-20 13:38:09.693 [main] INFO  org.example.sp.web.Application - Started Application in 8.49 seconds (JVM running for 12.268)
+2020-05-20 13:39:09.957 [Thread-21] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-20 13:39:09.959 [Thread-21] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-05-20 13:39:10.004 [Thread-21] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -4,8 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>hello-world</module>
+        <module>sp-business-user</module>
     </modules>
+
     <parent>
         <artifactId>sp-parent</artifactId>
         <groupId>org.example</groupId>
@@ -28,15 +29,6 @@
             <artifactId>sp-common</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
 
     </dependencies>
 

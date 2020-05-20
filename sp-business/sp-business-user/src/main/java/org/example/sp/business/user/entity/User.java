@@ -1,4 +1,4 @@
-package org.example.sp.business.hello.world.entity;
+package org.example.sp.business.user.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -7,15 +7,17 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import java.io.Serializable;
+
 import java.util.Date;
 
 /**
- * @author yizl
+ * @Author: yizl
+ * @Date: 2020/5/19
+ * @Description:
  */
 @Data
 @ApiModel(value="用户对象", description="用户对象")
-public class User implements Serializable {
+public class User {
 
     @TableId(type = IdType.UUID)
     @ApiModelProperty(value = "id")
@@ -37,5 +39,6 @@ public class User implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
+
 
 }

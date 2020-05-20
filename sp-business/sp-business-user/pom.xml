@@ -7,11 +7,9 @@
         <groupId>org.example</groupId>
         <version>1.0.0-RELEASE</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hello-world</artifactId>
-    <description>hello-world子业务工程</description>
+    <artifactId>sp-business-user</artifactId>
 
 
 </project>

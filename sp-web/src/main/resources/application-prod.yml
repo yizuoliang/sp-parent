@@ -1,0 +1,104 @@
+#项目版本号
+version: @project.version@
+server:
+  port: 8888
+  servlet:
+    context-path: /sp
+spring:
+  flyway:
+    # flyway 的 clean 命令会删除指定 schema 下的所有 table, 生产务必禁掉。这个默认值是 false 理论上作为默认配置是不科学的。
+    clean-disabled: true
+    # SQL 脚本的目录,多个路径使用逗号分隔 默认值 classpath:db/migration
+    locations: classpath:db/migration
+    # 如果没有 flyway_schema_history 这个 metadata 表， 在执行 flyway migrate 命令之前, 必须先执行 flyway baseline 命令
+    # 设置为 true 后 flyway 将在需要 baseline 的时候, 自动执行一次 baseline。
+    baseline-on-migrate: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sp-demo?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    druid:
+      #初始化大小
+      initialSize: 100
+      minIdle: 50
+      maxActive: 1000
+      #配置从连接池获取连接等待超时的时间
+      maxWait: 60000
+      #配置间隔多久启动一次DestroyThread，对连接池内的连接才进行一次检测，单位是毫秒。
+      #检测时: 1.连接空闲并且超过minIdle以外的连接，如果空闲时间超过minEvictableIdleTimeMillis设置的值则直接物理关闭
+      #      2.在minIdle以内的不处理
+      timeBetweenEvictionRunsMillis: 120000
+      #配置一个连接在池中最大空闲时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      #检验连接是否有效的查询语句。如果数据库Driver支持ping()方法，则优先使用ping()方法进行检查，否则使用validationQuery查询进行检查。(Oracle jdbc Driver目前不支持ping方法)
+      validationQuery: select 1 from dual
+      #单位：秒，检测连接是否有效的超时时间。底层调用jdbc Statement对象的void setQueryTimeout(int seconds)方法
+      validationQueryTimeout: 1
+      #打开后，增强timeBetweenEvictionRunsMillis的周期性连接检查，minIdle内的空闲连接，每次检查强制验证连接有效性. 参考：https://github.com/alibaba/druid/wiki/KeepAlive_cn
+      keepAlive: true
+      #设置从连接池获取连接时是否检查连接有效性，true时，如果连接空闲时间超过minEvictableIdleTimeMillis进行检查，否则不检查;false时，不检查
+      testWhileIdle: true
+      #设置从连接池获取连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+      testOnBorrow: false
+      #设置往连接池归还连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+      testOnReturn: false
+      #打开PSCache，并且指定每个连接上PSCache的大小，Oracle等支持游标的数据库，打开此开关，会以数量级提升性能.在mysql下建议关闭，具体查阅PSCache相关资料
+      poolPreparedStatements: false
+      #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      maxPoolPreparedStatementPerConnectionSize: 20
+      #连接泄露检查，打开removeAbandoned功能 , 连接从连接池借出后，长时间不归还，将触发强制回连接。回收周期随timeBetweenEvictionRunsMillis进行，如果连接为从连接池借出状态，并且未执行任何sql，并且从借出时间起已超过removeAbandonedTimeout时间，则强制归还连接到连接池中。
+      removeAbandoned: true
+      #超时时间，秒
+      removeAbandonedTimeout: 180
+      # removeAbandonedTimeoutMillis: 20000
+      #关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置
+      logAbandoned: true
+      #？？
+      logDifferentThread: true
+      filters: stat,wall
+      #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties:  druid.stat.mergeSql=true;druid.stat.logSlowSql=true;druid.stat.slowSqlMillis=3000
+      # ！！！请勿配置timeBetweenLogStatsMillis 会定时输出日志 并导致统计的sql清零
+      # timeBetweenLogStatsMillis=20000
+      #合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      web-stat-filter:
+        #是否启用StatFilter,默认值true
+        enabled: true
+        # 需要拦截的url
+        url-pattern: /*
+        # 排除静态资源的请求
+        exclusions: "*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,*.jsp,/druid/*"
+        sessionStatMaxCount: 2000
+        sessionStatEnable: true
+        principalSessionName: session_user_key
+        profileEnable: true
+      # Druid内置提供了一个StatViewServlet用于展示Druid的统计信息。
+      # 更多配置可参见: https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatViewServlet%E9%85%8D%E7%BD%AE
+      stat-view-servlet:
+        #是否启用StatViewServlet 默认值true
+        enabled: true
+        #需要拦截的url
+        url-pattern: /druid/*
+        #是否允许清空统计数据
+        reset-enable: false
+        login-username: druid
+        login-password: druid
+        allow: 127.0.0.1
+  #json 时间戳统一转换
+  jackson:
+    date-format:   yyyy-MM-dd HH:mm:ss
+    time-zone:   GMT+8
+
+#mybatis-plus配置控制台打印完整带参数SQL语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#生产环境屏蔽所有Swagger的相关资源
+knife4j:
+  production=true: true
+
+
+

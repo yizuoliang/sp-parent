@@ -27,6 +27,7 @@
         <mybatisplus.version>3.0.5</mybatisplus.version>
         <druid.version>1.3.2</druid.version>
         <swagger.version>2.9.2</swagger.version>
+        <knife4j.version>2.0.2</knife4j.version>
     </properties>
 
 
@@ -56,13 +57,13 @@
             <dependency>
                 <groupId>org.example</groupId>
                 <artifactId>sp-common</artifactId>
-                <version>${project.parent.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.example</groupId>
-                <artifactId>hello-world</artifactId>
-                <version>${project.parent.version}</version>
+                <artifactId>sp-business-user</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -75,6 +76,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
 
         </dependencies>

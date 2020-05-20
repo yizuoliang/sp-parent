@@ -1,4 +1,4 @@
-package org.example.sp.common.enetity;
+package org.example.sp.common.result;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,12 +14,27 @@ import lombok.Data;
 public class Result<T> {
 
     @ApiModelProperty(value = "返回code")
-    private Integer code;
+    private String code;
 
     @ApiModelProperty(value = "返回消息")
     private String  msg;
 
     @ApiModelProperty(value = "返回数据对象")
     private T data;
+
+    private Result(){
+
+    }
+
+    public Result(ResultEnum resultEnum) {
+        this.code = resultEnum.getCode();
+        this.msg = resultEnum.getMsg();
+    }
+
+    public Result(ResultEnum resultEnum, T data) {
+        this.code = resultEnum.getCode();
+        this.msg = resultEnum.getMsg();
+        this.data=data;
+    }
 
 }
