@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public Result<?> handleBusinessException(BusinessException e){
         log.error("[GlobalExceptionHandler][businessException] exception",e);
-        return new Result<>(ResultEnum.REQUEST_SERVICE_EXCEPTION,e.getClass());
+        return new Result<>(e.getResultEnum(),e.getClass());
     }
 
 
@@ -90,6 +90,7 @@ public class GlobalExceptionHandler {
             //异步请求超时
             AsyncRequestTimeoutException.class
     })
+
     public Result<?> handleServletException(Exception e) {
         log.warn("[GlobalExceptionHandler][servletException] exception",e);
         return new Result<>(ResultEnum.REQUEST_PARAMETER_ERROR,e.getClass());

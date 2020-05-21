@@ -110,7 +110,43 @@ spring:
 
 ## 六、使用Quartz框架定时调用
 
+![1590051909386](C:/Users/yizl/AppData/Roaming/Typora/typora-user-images/1590051909386.png)
 
+
+
+```java
+
+spring:
+  ## quartz定时任务,采用数据库方式
+  quartz:
+    job-store-type: jdbc
+    initialize-schema: embedded
+    #设置自动启动，默认为 true
+    auto-startup: true
+    #启动时更新己存在的Job
+    overwrite-existing-jobs: true
+    properties:
+      org:
+        quartz:
+          scheduler:
+            #d调度实例名称,quartz集群时要相同
+            instanceName: sp-quartz
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            # quartz表的前缀
+            tablePrefix: qrtz_
+            # 关闭quartz集群
+            isClustered: false
+            misfireThreshold: 60000
+            clusterCheckinInterval: 10000
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+           
+```
 
 ## 七、easyexcel的使用
 

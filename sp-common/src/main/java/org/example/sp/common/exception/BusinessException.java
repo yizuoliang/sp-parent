@@ -1,5 +1,7 @@
 package org.example.sp.common.exception;
 
+import org.example.sp.common.result.ResultEnum;
+
 /**
  * @Author: yizl
  * @Date: 2020/5/12
@@ -7,4 +9,14 @@ package org.example.sp.common.exception;
  */
 public class BusinessException extends RuntimeException {
 
+    private ResultEnum resultEnum;
+
+    public BusinessException(ResultEnum resultEnum)
+    {
+        this.resultEnum=resultEnum;
+    }
+
+    public ResultEnum getResultEnum(){
+        return this.resultEnum;
+    }
 }

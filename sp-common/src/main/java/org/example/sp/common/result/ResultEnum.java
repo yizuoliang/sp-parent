@@ -20,8 +20,13 @@ public enum ResultEnum {
     THIRD_PARTY_SERVICE_ERROR("C0001","调用第三方出错"),
     MIDDLEWARE_SERVICE_ERROR("C0100","中间件服务出错"),
     THIRD_PARTY_SERVICE_TIMEOUT("C0200","第三方系统执行超时"),
-    DATABASE_ERROR("C0300","数据库服务出错");
-
+    DATABASE_ERROR("C0300","数据库服务错误"),
+    QUARTZ_ERROR("C0600","Quartz框架错误"),
+    QUARTZ_SAVE_FAIL("C0601","Quartz添加调度失败"),
+    QUARTZ_UPDATE_FAIL("C0602","Quartz更新调度失败"),
+    QUARTZ_DELETE_FAIL("C0603","Quartz删除调度失败"),
+    QUARTZ_PAUSE_FAIL("C0604","Quartz暂停调度失败"),
+    QUARTZ_RESUME_FAIL("C0604","Quart恢复调度失败");
     private String code;
 
     private String msg;
