@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.example.sp.business.user.entity.User;
 import org.springframework.stereotype.Repository;
 
+
+
 /**
  * @Author: yizl
  * @Date: 2020/5/19
@@ -11,5 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface  UserMapper extends BaseMapper<User> {
+
 
 }

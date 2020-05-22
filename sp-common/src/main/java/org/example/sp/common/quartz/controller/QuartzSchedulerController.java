@@ -7,7 +7,6 @@ import org.example.sp.common.quartz.service.IQuartzSchedulerService;
 import org.example.sp.common.result.Result;
 import org.example.sp.common.result.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -2,6 +2,7 @@ package org.example.sp.business.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.example.sp.business.user.entity.User;
 import org.example.sp.business.user.mapper.UserMapper;
 import org.example.sp.business.user.service.IUserService;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUserService  {
 
     @Autowired
     private UserMapper mapper;
@@ -39,8 +40,10 @@ public class UserServiceImpl implements IUserService {
     public IPage<User> queryUserPage(PageQuery<User> pageUser) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         User userParams = pageUser.getParams();
-        //年龄大于传入的年龄
-        wrapper.gt("age",userParams.getAge());
+        if(userParams!=null){
+            //年龄大于传入的年龄
+            wrapper.gt("age",userParams.getAge());
+        }
         return mapper.selectPage(pageUser.getPage(), wrapper);
     }
 }
