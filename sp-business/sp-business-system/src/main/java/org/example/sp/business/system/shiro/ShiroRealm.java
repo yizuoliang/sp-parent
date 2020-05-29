@@ -8,6 +8,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.example.sp.business.system.service.IPermissionsService;
 import org.example.sp.business.user.service.IUserService;
 import org.example.sp.common.entity.User;
@@ -60,9 +61,9 @@ public class ShiroRealm extends AuthorizingRealm {
        if (user.getStatus() == 0) {
            throw new SpAuthenticationException(ResultEnum.CLIENT_ACCOUNT_FREEZE);
         }
-        //String salt = user.getSalt();
         //认证信息里存放账号密码, getName() 是当前Realm的继承方法,通常返回当前类名
         //盐也放进去
-        return new SimpleAuthenticationInfo(userName,user.getPassword(),getName());
+        return new SimpleAuthenticationInfo(userName,user.getPassword(),
+                ByteSource.Util.bytes(user.getSalt()),getName());
     }
 }

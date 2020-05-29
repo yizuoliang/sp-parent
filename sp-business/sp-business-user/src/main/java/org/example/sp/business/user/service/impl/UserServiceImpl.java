@@ -7,6 +7,7 @@ import org.example.sp.common.entity.User;
 import org.example.sp.business.user.mapper.UserMapper;
 import org.example.sp.business.user.service.IUserService;
 import org.example.sp.common.entity.PageQuery;
+import org.example.sp.common.util.ShiroUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUs
 
     @Override
     public void insertUser(User user) {
+        //前端传过来的密码(前端一般也会加密),后台进行加密
+        String salt = ShiroUtil.getRandomSalt();
+        String password = ShiroUtil.md5(user.getPassword(), salt);
+        //数据库保存加密后的密码
+        user.setPassword(password);
         mapper.insert(user);
     }
 

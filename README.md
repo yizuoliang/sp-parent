@@ -154,11 +154,41 @@ spring:
 
 ## 八、Shiro安全框架
 
+### 1.shiro架构
+
 ![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200529100426.png)
 
 ![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200529100210.png)
 
+### 2.密码的MD5盐值加密
 
+​	1.不管前端传过来的加密密码或者明文密码,后台按照,密码加盐值MD5加密,存入数据库.
+
+​	2.定义凭证匹配器(认证是告诉Realm,加密方式)
+
+```
+    /**
+     *  凭证匹配器(注册到自定义的Realm中)
+     *  在认证时,就会按照下面方式进行认证(说白了,就是将登陆的密码,按照下面方式进行加密,在和数据库的对比)
+     *
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        //设置散列算法:MD5
+        credentialsMatcher.setHashAlgorithmName(ShiroConstant.ALGORITHM_NAME);
+        // MD5加密次数
+        credentialsMatcher.setHashIterations(ShiroConstant.ENCODE_COUNT);
+        return credentialsMatcher;
+    }
+
+```
+
+注: 前端应该对用户输入的密码进行加密后再传输(http通道安全),下面有一种方案;
+
+1.前端对密码进行加盐MD5;
+
+2.后台再对密码加盐MD5,存入数据库;
 
 ## 九、JWT认证和授权
 

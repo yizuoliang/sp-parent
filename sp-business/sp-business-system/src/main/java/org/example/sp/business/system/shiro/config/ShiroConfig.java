@@ -1,5 +1,6 @@
 package org.example.sp.business.system.shiro.config;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -9,6 +10,7 @@ import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.example.sp.business.system.shiro.ShiroRealm;
 import org.example.sp.business.system.shiro.filter.SpAuthenticatingFilter;
+import org.example.sp.common.constant.ShiroConstant;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +28,13 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig{
+
     @Bean
-    public ShiroRealm shiroRealm() {
-        return new ShiroRealm();
+    public ShiroRealm shiroRealm(HashedCredentialsMatcher hashedCredentialsMatcher) {
+
+        ShiroRealm shiroRealm = new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        return shiroRealm;
     }
     /**
      * 不指定名字的话，自动创建一个方法名 :第一个字母小写的bean
@@ -69,6 +75,20 @@ public class ShiroConfig{
         return shiroFilterFactoryBean;
     }
 
+    /**
+     *  凭证匹配器(注册到自定义的Realm中)
+     *  在认证时,就会按照下面方式进行认证(说白了,就是将登陆的密码,按照下面方式进行加密,在和数据库的对比)
+     *
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        //设置散列算法:MD5
+        credentialsMatcher.setHashAlgorithmName(ShiroConstant.ALGORITHM_NAME);
+        // MD5加密次数
+        credentialsMatcher.setHashIterations(ShiroConstant.ENCODE_COUNT);
+        return credentialsMatcher;
+    }
 
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
