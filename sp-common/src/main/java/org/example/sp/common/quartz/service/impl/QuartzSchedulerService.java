@@ -41,7 +41,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
             //判断此调度是否存在,存在,就不能添加
             if (scheduler.checkExists(triggerKey))
             {
-                throw new BusinessException(ResultEnum.QUARTZ_SAVE_FAIL);
+                throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_SAVE_FAIL);
             }
             if (jobInfo.isSimpleScheduler())
             {
@@ -70,7 +70,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
                 scheduler.scheduleJob(jobDetail,trigger);
             }
         } catch (SchedulerException  e) {
-            throw new BusinessException(ResultEnum.QUARTZ_SAVE_FAIL);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_SAVE_FAIL);
         }
         return true;
     }
@@ -108,7 +108,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
 
             }
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_UPDATE_FAIL);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_UPDATE_FAIL);
         }
         return true;
     }
@@ -127,7 +127,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
         try {
             scheduler.resumeJob(jobKey);
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_RESUME_FAIL);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_RESUME_FAIL);
         }
         return true;
     }
@@ -145,7 +145,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
         try {
             scheduler.deleteJob(jobKey);
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_DELETE_FAIL);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_DELETE_FAIL);
         }
         return true;
     }
@@ -164,7 +164,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
         try {
             scheduler.pauseJob(jobKey);
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_PAUSE_FAIL);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_PAUSE_FAIL);
         }
         return true;
     }
@@ -207,7 +207,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
                 }
             }
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_ERROR);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_ERROR);
         }
         return jobList;
     }
@@ -225,7 +225,7 @@ public class QuartzSchedulerService implements IQuartzSchedulerService {
         try {
             scheduler.triggerJob(jobKey);
         } catch (SchedulerException e) {
-            throw new BusinessException(ResultEnum.QUARTZ_ERROR);
+            throw new BusinessException(ResultEnum.PROVIDER_QUARTZ_ERROR);
         }
     }
 

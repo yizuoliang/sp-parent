@@ -9,24 +9,30 @@ public enum ResultEnum {
 
     SUCCESS("000000", "成功"),
     CLIENT_ERROR("A0001", "用户端错误"),
-    REGISTRATION_ERROR("A0100", "用户注册错误"),
-    LOGIN_EXCEPTION("A0200", "用户登录异常"),
-    ACCESS_PERMISSION_EXCEPTION("A0300", "访问权限异常"),
-    REQUEST_PARAMETER_ERROR("A0400", "请求参数错误"),
-    REQUEST_SERVICE_EXCEPTION("A0500","用户请求服务异常"),
+    CLIENT_REGISTRATION_ERROR("A0100", "用户注册错误"),
+    CLIENT_LOGIN_EXCEPTION("A0200", "用户登录异常"),
+    CLIENT_ACCOUNT_NON("A0201", "用户账户不存在"),
+    CLIENT_ACCOUNT_FREEZE("A0202", "用户账户被冻结"),
+    CLIENT_PASSWORD_ERROR("A0210", "用户密码错误"),
+    CLIENT_PERMISSION_EXCEPTION("A0300", "访问权限异常"),
+    CLIENT_PERMISSION_UNAUTHORIZED("A0301", "访问未授权"),
+    CLIENT_PARAMETER_ERROR("A0400", "请求参数错误"),
+    CLIENT_SERVICE_EXCEPTION("A0500","用户请求服务异常"),
     SYSTEM_EXECUTION_ERROR("B0001","系统执行错误"),
     SYSTEM_EXECUTION_TIMEOUT("B0100","系统执行超时"),
     SYSTEM_RESOURCE_EXCEPTION("B0300","系统资源异常"),
-    THIRD_PARTY_SERVICE_ERROR("C0001","调用第三方出错"),
-    MIDDLEWARE_SERVICE_ERROR("C0100","中间件服务出错"),
-    THIRD_PARTY_SERVICE_TIMEOUT("C0200","第三方系统执行超时"),
-    DATABASE_ERROR("C0300","数据库服务错误"),
-    QUARTZ_ERROR("C0600","Quartz框架错误"),
-    QUARTZ_SAVE_FAIL("C0601","Quartz添加调度失败"),
-    QUARTZ_UPDATE_FAIL("C0602","Quartz更新调度失败"),
-    QUARTZ_DELETE_FAIL("C0603","Quartz删除调度失败"),
-    QUARTZ_PAUSE_FAIL("C0604","Quartz暂停调度失败"),
-    QUARTZ_RESUME_FAIL("C0604","Quart恢复调度失败");
+    PROVIDER_SERVICE_ERROR("C0001","调用第三方出错"),
+    PROVIDER_MIDDLEWARE_ERROR("C0100","中间件服务出错"),
+    PROVIDER_SERVICE_TIMEOUT("C0200","第三方系统执行超时"),
+    PROVIDER_DATABASE_ERROR("C0300","数据库服务错误"),
+    PROVIDER_QUARTZ_ERROR("C0600","Quartz框架错误"),
+    PROVIDER_QUARTZ_SAVE_FAIL("C0601","Quartz添加调度失败"),
+    PROVIDER_QUARTZ_UPDATE_FAIL("C0602","Quartz更新调度失败"),
+    PROVIDER_QUARTZ_DELETE_FAIL("C0603","Quartz删除调度失败"),
+    PROVIDER_QUARTZ_PAUSE_FAIL("C0604","Quartz暂停调度失败"),
+    PROVIDER_QUARTZ_RESUME_FAIL("C0604","Quart恢复调度失败");
+
+
     private String code;
 
     private String msg;

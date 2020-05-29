@@ -9,7 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sp-business-user</artifactId>
-    <description>用户业务工程</description>
+    <artifactId>sp-business-system</artifactId>
+    <description>系统设置模块</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>sp-business-user</artifactId>
+        </dependency>
+
+</dependencies>
+
 
 </project>

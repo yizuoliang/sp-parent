@@ -3,7 +3,7 @@ package org.example.sp.business.user.listener;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import lombok.extern.slf4j.Slf4j;
-import org.example.sp.business.user.entity.User;
+import org.example.sp.common.entity.User;
 import org.example.sp.business.user.service.IUserService;
 
 import java.util.ArrayList;

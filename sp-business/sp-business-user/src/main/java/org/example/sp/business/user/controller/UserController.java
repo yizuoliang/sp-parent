@@ -3,10 +3,10 @@ package org.example.sp.business.user.controller;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.example.sp.business.user.entity.User;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.example.sp.common.entity.User;
 import org.example.sp.business.user.listener.UserDataListener;
 import org.example.sp.business.user.service.IUserService;
 import org.example.sp.common.entity.PageQuery;
@@ -16,7 +16,6 @@ import org.example.sp.common.result.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -25,7 +24,7 @@ import java.util.List;
 /**
  * @Author: yizl
  * @Date: 2020/5/19
- * @Description:
+ * @Description: user控制类
  */
 @RestController
 @RequestMapping("/user")
@@ -35,6 +34,7 @@ public class UserController {
     @Autowired
     private IUserService service;
 
+    @RequiresPermissions("user:get")
     @GetMapping("/getUserById")
     @ApiOperation("通过id获取用户")
     public Result<User> getUserById(String id) {
@@ -42,6 +42,7 @@ public class UserController {
         return new Result<>(ResultEnum.SUCCESS,user);
     }
 
+    @RequiresPermissions("user:insert")
     @PostMapping("/insertUser")
     @ApiOperation("添加用户")
     public Result<User> insertUser(@RequestBody User user) {
@@ -49,6 +50,7 @@ public class UserController {
         return new Result<>(ResultEnum.SUCCESS);
     }
 
+    @RequiresPermissions("user:update")
     @PostMapping("/updateUserById")
     @ApiOperation("通过id更新用户")
     public Result<User> updateUserById(@RequestBody User user) {
@@ -56,6 +58,7 @@ public class UserController {
         return new Result<>(ResultEnum.SUCCESS);
     }
 
+    @RequiresPermissions("user:list")
     @PostMapping("/queryUserList")
     @ApiOperation("通过传入的条件分页查询")
     public Result<IPage<User>> queryUserList(@RequestBody PageQuery<User> pageUser ) {
@@ -70,6 +73,7 @@ public class UserController {
      * @Author: yizl
      * @Date: 2020/5/22 13:41
      */
+    @RequiresPermissions("user:download")
     @PostMapping("/download/user")
     @ApiOperation("下载用户Excel列表")
     public void downloadUserExcel(@RequestBody PageQuery<User> pageUser, HttpServletResponse response) {
@@ -94,6 +98,7 @@ public class UserController {
         }
     }
 
+    @RequiresPermissions("user:upload")
     @PostMapping("/upload/user")
     @ApiOperation("批量上传保存用户")
     public Result<?> upload(MultipartFile file) throws IOException {

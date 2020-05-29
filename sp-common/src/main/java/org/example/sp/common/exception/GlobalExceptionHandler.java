@@ -1,6 +1,7 @@
 package org.example.sp.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.example.sp.common.result.Result;
 import org.example.sp.common.result.ResultEnum;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -37,10 +38,27 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public Result<?> handleBusinessException(BusinessException e){
         log.error("[GlobalExceptionHandler][businessException] exception",e);
-        return new Result<>(e.getResultEnum(),e.getClass());
+        return new Result<>(e.getResultEnum());
     }
 
+    /**
+     * 功能描述: <br> 业务上的异常
+     * @Param: [e]
+     * @Return: Result
+     * @Author: yizl
+     * @Date: 2020/5/12 19:44
+     */
+    @ExceptionHandler(SpAuthenticationException.class)
+    public Result<?> handleSpAuthenticationException(SpAuthenticationException e){
+        log.error("[GlobalExceptionHandler][SpAuthenticationException] exception",e);
+        return new Result<>(e.getResultEnum());
+    }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public Result<?> handleUnauthorizedExceptionException(UnauthorizedException e){
+        log.error("[GlobalExceptionHandler][UnauthorizedException] exception",e);
+        return new Result<>(ResultEnum.CLIENT_PERMISSION_UNAUTHORIZED);
+    }
 
     /**
      * 功能描述: <br> 处理其他异常(数据库操作等)
@@ -52,7 +70,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result<?> handleException(Exception e){
         log.error("[GlobalExceptionHandler][exception] exception",e);
-        return new Result<>(ResultEnum.SYSTEM_EXECUTION_ERROR,e.getClass());
+        return new Result<>(ResultEnum.SYSTEM_EXECUTION_ERROR);
     }
 
 
@@ -90,10 +108,9 @@ public class GlobalExceptionHandler {
             //异步请求超时
             AsyncRequestTimeoutException.class
     })
-
     public Result<?> handleServletException(Exception e) {
         log.warn("[GlobalExceptionHandler][servletException] exception",e);
-        return new Result<>(ResultEnum.REQUEST_PARAMETER_ERROR,e.getClass());
+        return new Result<>(ResultEnum.CLIENT_PARAMETER_ERROR);
     }
 
 }

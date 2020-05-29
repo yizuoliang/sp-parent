@@ -104,6 +104,8 @@ spring:
 
 **官方文档:  https://doc.xiaominfo.com**
 
+swagger-bootstrap-ui默认访问地址是：`http://${host}:${port}/doc.html`
+
 ## 五、异常统一处理、系统日志处理
 
 异常日志参考 : java开发手册(泰山版)
@@ -150,27 +152,23 @@ spring:
 
 **[官方网站: https://yuque.com/easyexcel](https://www.yuque.com/easyexcel/doc/easyexcel)**
 
-## 八、websocket使用
+## 八、Shiro安全框架
+
+![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200529100426.png)
+
+![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200529100210.png)
 
 
 
-## 九、Shiro安全框架
+## 九、JWT认证和授权
 
 
 
-## 十、JWT认证和授权
+## 十、redis的使用
 
 
 
-## 十、ElasticSearch的使用
-
-
-
-## 十一、websocket使用
-
-
-
-## 十二、redis的使用
+## 十一、Docker部署
 
 
 

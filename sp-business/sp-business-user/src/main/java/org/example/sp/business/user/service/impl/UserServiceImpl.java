@@ -3,7 +3,7 @@ package org.example.sp.business.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.example.sp.business.user.entity.User;
+import org.example.sp.common.entity.User;
 import org.example.sp.business.user.mapper.UserMapper;
 import org.example.sp.business.user.service.IUserService;
 import org.example.sp.common.entity.PageQuery;
@@ -41,9 +41,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUs
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         User userParams = pageUser.getParams();
         if(userParams!=null){
-            //年龄大于传入的年龄
-            wrapper.gt("age",userParams.getAge());
+            wrapper.like("user_name",userParams.getUserName());
         }
         return mapper.selectPage(pageUser.getPage(), wrapper);
     }
+
+    @Override
+    public User getByUserName(String userName) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",userName);
+        return mapper.selectOne(wrapper);
+    }
+
+
 }
