@@ -190,15 +190,29 @@ spring:
 
 2.后台再对密码加盐MD5,存入数据库;
 
-## 九、JWT认证和授权
+## 九、JWT(Json web token)认证
+
+http协议本身是一种无状态的协议,用户在进行登录认证后,在http下一次请求,并不知道用户的登录状态,所以采用cookie和session方式
+
+cookie--session方式
+
+![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200602101549.jpg)
+
+JWT方式
+
+![](https://cdn.jsdelivr.net/gh/yizuoliang/picBed/img/20200602101519.jpg)
+
+JWT问题:
+
+1.JWT的最大缺点是服务器不保存会话状态，所以在使用期间不可能取消令牌或更改令牌的权限。也就是说，一旦JWT签发，在有效期内将会一直有效。(网上很多都才用redis保存token,这种方式其实还是在服务端保存,与jwt设计初衷不符,如果直接用redis,干嘛不直接用session或者将session存入redis);
+
+如果使用jwt，退出登录时，前端控制将token清除，因为jwt是一经签发，一直有效。
+
+## 十、Docker部署
 
 
 
-## 十、redis的使用
 
-
-
-## 十一、Docker部署
 
 
 

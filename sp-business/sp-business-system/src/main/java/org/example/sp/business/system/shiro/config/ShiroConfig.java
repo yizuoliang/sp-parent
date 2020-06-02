@@ -9,7 +9,7 @@ import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.example.sp.business.system.shiro.ShiroRealm;
-import org.example.sp.business.system.shiro.filter.SpAuthenticatingFilter;
+import org.example.sp.business.system.shiro.filter.JWTFilter;
 import org.example.sp.common.constant.ShiroConstant;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +31,8 @@ public class ShiroConfig{
 
     @Bean
     public ShiroRealm shiroRealm(HashedCredentialsMatcher hashedCredentialsMatcher) {
-
         ShiroRealm shiroRealm = new ShiroRealm();
-        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        //shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         return shiroRealm;
     }
     /**
@@ -64,12 +63,22 @@ public class ShiroConfig{
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //配置拦截器,实现无权限返回,无权限result,而不是跳转到登录页index.jsp
         Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
-        filters.put("authc", new SpAuthenticatingFilter());
+       //设置拦截器,key名字为authc
+        filters.put("authc", new JWTFilter());
+        //filters.put("authc", new SpAuthenticatingFilter());
         shiroFilterFactoryBean.setFilters(filters);
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
         // authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
         filterChainDefinitionMap.put("/login/**", "anon");
+        //放行Swagger接口
+        filterChainDefinitionMap.put("/v2/api-docs","anon");
+        filterChainDefinitionMap.put("/swagger-resources/configuration/ui","anon");
+        filterChainDefinitionMap.put("/swagger-resources","anon");
+        filterChainDefinitionMap.put("/swagger-resources/configuration/security","anon");
+        filterChainDefinitionMap.put("/swagger-ui.html","anon");
+        filterChainDefinitionMap.put("/webjars/**","anon");
+        //所有的都要通过JWTFilter过滤器
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

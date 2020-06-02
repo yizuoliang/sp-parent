@@ -34,7 +34,7 @@ public class UserController {
     @Autowired
     private IUserService service;
 
-    @RequiresPermissions("user:get")
+    //@RequiresPermissions("user:get")
     @GetMapping("/getUserById")
     @ApiOperation("通过id获取用户")
     public Result<User> getUserById(String id) {

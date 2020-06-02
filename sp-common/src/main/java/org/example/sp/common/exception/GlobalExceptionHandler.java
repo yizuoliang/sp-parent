@@ -22,7 +22,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 /**
  * @Author: yizl
  * @Date: 2020/5/12
- * @Description: 全局异常拦截处理器
+ * @Description: 全局异常拦截处理器(只能拦截在Controller层的异常捕捉,无法不住到拦截器上的异常)
  */
 @Slf4j
 @RestControllerAdvice
